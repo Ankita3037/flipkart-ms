@@ -38,6 +38,14 @@ pipeline {
                 echo 'Creating War Artifact done'
             }
         }
+        stage('Building and Tag Docker image'){
+            steps {
+            echo 'Starting Building Docker Image'
+            sh "docker build -t Ankita3037/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} ."
+            sh "docker build -t flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} ."
+            echo 'Completed Building Docker Image'
+        }
+     }
 
     }
 
