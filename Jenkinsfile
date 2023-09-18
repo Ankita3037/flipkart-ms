@@ -73,9 +73,7 @@ pipeline {
                     echo "Push Docker Image to ECR: Completed"
                     """
                 }
-
             }
-
-       	}
+         }
     }
 }
