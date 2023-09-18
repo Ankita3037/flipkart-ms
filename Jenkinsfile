@@ -64,11 +64,10 @@ pipeline {
                     withDockerRegistry([credentialsId: 'ecr:ap-south-1:ecr-credentials', url: "https://350458189256.dkr.ecr.ap-south-1.amazonaws.com"]) {
                         sh """
                         echo "Tagging the Docker Image: In Progress"
-                        docker tag flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} 350458189256.dkr.ecr.ap-south-1.amazonaws.com/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}
-                        docker tag flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} 350458189256.dkr.ecr.ap-south-1.amazonaws.com/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}
+                        docker tag flipkart-ms:latest 350458189256.dkr.ecr.ap-south-1.amazonaws.com/flipkart-ms:latest
                         echo "Tagging the Docker Image: Completed"
                         echo "Push Docker Image to ECR: In Progress"
-                        docker push 350458189256.dkr.ecr.ap-south-1.amazonaws.com/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}
+                        docker push 350458189256.dkr.ecr.ap-south-1.amazonaws.com/flipkart-ms:latest
                         echo "Push Docker Image to ECR: Completed"
                         """
                     }
