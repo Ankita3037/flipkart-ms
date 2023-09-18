@@ -38,15 +38,15 @@ pipeline {
                 sh "docker build -t ankita3037/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} ."
                 sh "docker build -t flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} ."
                 echo 'Completed Building Docker Image'
+            }
         }
-
 
         stage('Docker Image Scanning') {
             steps {
                 echo 'Docker Image Scanning Started'
                 sh 'java -version'
                 echo 'Docker Image Scanning Started'
-                   }
+            }
         }
          stage('Docker push to Docker Hub') {
             steps {
