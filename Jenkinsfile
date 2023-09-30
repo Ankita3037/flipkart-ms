@@ -78,7 +78,7 @@ pipeline {
         stage('Upload the docker image to Nexus'){
             steps{
                 script{
-                withCredentials([usernamePassword(credentialsId:'nexuscred', usernameVariable:'USERNAME',passwordVariable:'PASSWORD')]){
+                withCredentials([usernamePassword(credentialsId: 'nexuscred', usernameVariable:'USERNAME', passwordVariable:'PASSWORD')]){
                     sh 'docker login http://13.127.151.101:8085/repository/flipkart-ms/ -u admin -p ${PASSWORD}'
                     echo 'Push docker image to Nexus : In progress'
                     sh 'docker tag flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER} 13.127.151.101:8085/flipkart-ms:dev-flipkart-ms-v1.${BUILD_NUMBER}'
