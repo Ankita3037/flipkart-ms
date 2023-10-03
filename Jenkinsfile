@@ -35,7 +35,7 @@ pipeline {
                     sh 'mvn sonar:sonar'
                 }
                 timeout(time:10, unit:'MINUTES'){
-                    waitForQualityGateabortPipeline:true
+                    waitForQualityGate abortPipeline:true
                 }
             }
         }
