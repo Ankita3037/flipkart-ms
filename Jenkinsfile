@@ -24,6 +24,21 @@ pipeline {
                 echo 'Junit Test case check Completed!'
             }
         }
+        stage('SonarQube')
+        {
+            environment{
+                scannerHome=tool 'SonarQubeScanner'
+            }
+            steps{
+                withSonarQubeEnv('sonar-server'){
+                    sh "${scannerHome}/bin/sonar-scanner"
+                    sh 'mvn sonar:sonar'
+                }
+                timeout(time:10, unit:'MINUTES'){
+                    waitForQualityGateabortPipeline:true
+                }
+            }
+        }
         stage('Code Package') {
             steps {
                 echo 'Creating War Artifact'
@@ -75,7 +90,7 @@ pipeline {
                 }
             }
         }
-        stage('Upload the docker image to Nexus'){
+       /* stage('Upload the docker image to Nexus'){
             steps{
                 script{
                 withCredentials([usernamePassword(credentialsId: 'nexuscred', usernameVariable:'USERNAME', passwordVariable:'PASSWORD')]){
@@ -87,7 +102,7 @@ pipeline {
                 }
                 }
             }
-        }
+        }*/
 
 	}
 }
